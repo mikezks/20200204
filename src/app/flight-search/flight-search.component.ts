@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Flight } from '../entities/flight';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FlightService } from './flight.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-flight-search',
@@ -13,10 +14,29 @@ export class FlightSearchComponent implements OnInit {
   to = 'Graz';
   flights: Flight[] = [];
   selectedFlight: Flight;
+  flights$ = of([
+    {
+      id: 500,
+      from: 'Brussels',
+      to: 'New York',
+      date: (new Date()).toISOString(),
+      delayed: true
+    }
+  ],
+  [
+    {
+      id: 1000,
+      from: 'Brussels',
+      to: 'New York',
+      date: (new Date()).toISOString(),
+      delayed: true
+    }
+  ]);
 
   constructor(private flightService: FlightService) { }
 
   ngOnInit(): void {
+    this.flights$.subscribe(flights => console.log(flights));
   }
 
   search(): void {

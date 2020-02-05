@@ -43,8 +43,8 @@
             *ngFor="let flight of flights"
             [class.active]="selectedFlight === flight">
                 <td>{{ flight.id }}</td>
-                <td>{{ flight.from | city:'short' }}</td>
-                <td>{{ flight.to | city }}</td>
+                <td>{{ flight.from | city:'short' | async }}</td>
+                <td>{{ flight.to | city | async }}</td>
                 <td>{{ flight.date | date:'dd.MM.yyyy HH:mm' }}</td>
                 <td>
                     <a
@@ -55,4 +55,8 @@
       </tbody>
     </table>
   
+  </div>
+
+  <div class="card">
+  <pre>{{ flights$ | async | json }}</pre>
   </div>
