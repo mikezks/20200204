@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { FlightSearchComponent } from './flight-search/flight-search.component';
+import { CityPipe } from './shared/pipes/city.pipe';
 
 @NgModule({
    imports: [
@@ -19,7 +20,8 @@ import { FlightSearchComponent } from './flight-search/flight-search.component';
       AppComponent,
       SidebarComponent,
       NavbarComponent,
-      FlightSearchComponent
+      FlightSearchComponent,
+      CityPipe
    ],
    providers: [],
    bootstrap: [
