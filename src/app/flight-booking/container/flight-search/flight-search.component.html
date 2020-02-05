@@ -6,11 +6,41 @@
 
     <div class="content">
 
-        <form>
+        <form #form="ngForm">
             <div class="form-group">
                 <label>From:</label>
-                <input [(ngModel)]="from" name="from" class="form-control">
+                <input
+                    [(ngModel)]="from" 
+                    name="from"
+                    class="form-control"
+                    required
+                    minlength="3"
+                    maxlength="10">
             </div>
+            
+            <div
+                class="alert alert-danger"
+                *ngIf="form?.controls['from']?.invalid">
+                An Error occured!
+            </div>
+            <div
+                class="alert alert-danger"
+                *ngIf="form?.controls['from']?.hasError('required')">
+                This is a mandatory input!
+            </div>
+            <div
+                class="alert alert-danger"
+                *ngIf="form?.controls['from']?.hasError('minlength')">
+                Please enter at least {{
+                    form?.controls['from']?.errors?.minlength?.requiredLength
+                }} chars!
+            </div>
+            <pre *ngIf="form?.controls['from']?.errors">Errors:
+---------------------------------
+{{
+                form?.controls['from']?.errors | json
+            }}</pre>
+
             <div class="form-group">
                 <label>To:</label>
                 <input [(ngModel)]="to" name="to" class="form-control">

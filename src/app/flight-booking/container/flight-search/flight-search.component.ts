@@ -20,29 +20,9 @@ export class FlightSearchComponent implements OnInit {
     "5": false
   };
 
-  flights$ = of([
-    {
-      id: 500,
-      from: 'Brussels',
-      to: 'New York',
-      date: (new Date()).toISOString(),
-      delayed: true
-    }
-  ],
-  [
-    {
-      id: 1000,
-      from: 'Brussels',
-      to: 'New York',
-      date: (new Date()).toISOString(),
-      delayed: true
-    }
-  ]);
-
   constructor(private flightService: FlightService) { }
 
   ngOnInit(): void {
-    this.flights$.subscribe(flights => console.log(flights));
   }
 
   search(): void {
