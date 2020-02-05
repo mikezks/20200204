@@ -13,6 +13,11 @@ export class FlightSearchComponent implements OnInit {
   to = 'Graz';
   flights: Flight[] = [];
   selectedFlight: Flight;
+  basket: object = {
+    "3": true,
+    "5": false
+  };
+
   flights$ = of([
     {
       id: 500,
