@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Flight } from '../../entities/flight';
 import { FlightService } from './flight.service';
 
 @Injectable()
 export class DefaultFlightService implements FlightService {
+  flights: Flight[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -20,6 +22,9 @@ export class DefaultFlightService implements FlightService {
       .set('Accept', 'application/json');
 
     return this.http
-      .get<Flight[]>(url, { params, headers });
+      .get<Flight[]>(url, { params, headers })
+      .pipe(
+        tap(flights => this.flights = flights)
+      );
   }
 }

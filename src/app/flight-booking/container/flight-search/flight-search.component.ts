@@ -11,7 +11,9 @@ import { of } from 'rxjs';
 export class FlightSearchComponent implements OnInit {
   from = 'Hamburg';
   to = 'Graz';
-  flights: Flight[] = [];
+  get flights() {
+    return this.flightService.flights;
+  }
   selectedFlight: Flight;
   basket: object = {
     "3": true,
@@ -47,8 +49,8 @@ export class FlightSearchComponent implements OnInit {
     this.flightService
       .find(this.from, this.to)
       .subscribe(
-        flights => this.flights = flights,
-        err => console.error('Error on loading flights', err)
+        /* flights => this.flights = flights,
+        err => console.error('Error on loading flights', err) */
       );
   }
 

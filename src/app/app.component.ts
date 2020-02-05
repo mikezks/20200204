@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent  {
   title = 'Hello Angular!';
   show: boolean;
+  toggleComponent: boolean = true;
 
   change(): void {
     this.title = 'My new title!';
