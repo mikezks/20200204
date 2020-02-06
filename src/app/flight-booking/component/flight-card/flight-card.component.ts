@@ -17,13 +17,8 @@ export class FlightCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  select(): void {
-    this.selected = true;
-    this.selectedChange.emit(this.selected);
-  }
-
-  deselect(): void {
-    this.selected = false;
+  toggleSelection(): void {
+    this.selected = !this.selected;
     this.selectedChange.emit(this.selected);
   }
 }
