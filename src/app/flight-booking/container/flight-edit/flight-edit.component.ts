@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { validateCity, validateCityWithParams } from '../../../shared/validation/city-validator';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-flight-edit',
@@ -9,8 +10,11 @@ import { validateCity, validateCityWithParams } from '../../../shared/validation
 })
 export class FlightEditComponent implements OnInit {
   editForm: FormGroup;
+  id: number;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.editForm = this.fb.group({
@@ -40,6 +44,14 @@ export class FlightEditComponent implements OnInit {
         (new Date()).toISOString()
       ]
     });
+
+    this.route.paramMap
+      .subscribe(
+        params => {
+          this.id = +params.get('id');
+          this.editForm.controls['id'].setValue(this.id);
+        }
+      );
 
     this.editForm.valueChanges
       .subscribe(console.log);
