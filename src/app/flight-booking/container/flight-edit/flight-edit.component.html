@@ -1,0 +1,74 @@
+<div class="card">
+
+    <div class="header">
+        <h2 class="title">Flight Edit</h2>
+    </div>
+
+    <div class="content">
+        <form [formGroup]="editForm">
+            <div class="form-group">
+                <label>Id:</label>
+                <input formControlName="id" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label>From:</label>
+                <input formControlName="from" class="form-control">
+            </div>
+
+            <div
+                class="alert alert-danger"
+                *ngIf="editForm.controls['from'].hasError('required')">
+                This is a mandatory input!
+            </div>
+            <div
+                class="alert alert-danger"
+                *ngIf="editForm.controls['from'].hasError('minlength')">
+                Please enter at least {{
+                    editForm.controls['from'].errors.minlength.requiredLength
+                }} chars!
+            </div>
+        
+            <div class="form-group">
+                <label>To:</label>
+                <input formControlName="to" class="form-control">
+            </div>
+
+            <div
+                class="alert alert-danger"
+                *ngIf="editForm.controls['to'].hasError('required')">
+                This is a mandatory input!
+            </div>
+            <div
+                class="alert alert-danger"
+                *ngIf="editForm.controls['to'].hasError('minlength')">
+                Please enter at least {{
+                    editForm.controls['to'].errors.minlength.requiredLength
+                }} chars!
+            </div>
+
+            <div class="form-group">
+                <label>Date:</label>
+                <input formControlName="date" class="form-control">
+            </div>
+        
+            <div class="form-group">
+                <button
+                    (click)="save()"
+                    [disabled]="!editForm.valid"
+                    class="btn btn-default">
+                    Save
+                </button>
+            </div>
+
+            <div class="form-group">
+                <button
+                    (click)="update()"
+                    class="btn btn-default">
+                    Update
+                </button>
+            </div>
+        
+        </form>
+    </div>
+</div>
