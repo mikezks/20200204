@@ -18,8 +18,6 @@ import { FlightEditComponent } from './container/flight-edit/flight-edit.compone
     SharedModule
   ],
   exports: [
-    FlightSearchComponent,
-    FlightEditComponent
   ]
 })
 export class FlightBookingModule { }
