@@ -15,7 +15,8 @@
                     class="form-control"
                     required
                     minlength="3"
-                    maxlength="10">
+                    maxlength="10"
+                    city="Graz,Berlin">
             </div>
             
             <div
@@ -34,6 +35,13 @@
                 Please enter at least {{
                     form?.controls['from']?.errors?.minlength?.requiredLength
                 }} chars!
+            </div>
+            <div
+                class="alert alert-danger"
+                *ngIf="form?.controls['from']?.hasError('city')">
+                The entered city is not whitelisted. Please use: {{
+                    form?.controls['from']?.errors?.city?.validCities | json
+                }}
             </div>
             <pre *ngIf="form?.controls['from']?.errors">Errors:
 ---------------------------------
